@@ -46,6 +46,12 @@ int main()
 
     Shader shader(BASE_ROOT "src/shaders/vertex_shader.glsl", BASE_ROOT "src/shaders/fragment_shader.glsl");
 
+    // HABILITAR DESCARTE DE CARAS TRASERAS 🧱
+    glEnable(GL_DEPTH_TEST); // También asegúrate de tener esto
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    // glFrontFace(GL_CCW); // Por defecto es GL_CCW, cámbialo si tu modelo lo requiere
+
     while (!glfwWindowShouldClose(window))
     {
         // Clear the screen
