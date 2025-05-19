@@ -40,7 +40,6 @@ int main()
 
     Shader shader("shaders/vertex_shader.glsl", "shaders/fragment_shader.glsl");
 
-
     while (!glfwWindowShouldClose(window))
     {
         // Clear the screen
@@ -50,12 +49,24 @@ int main()
         shader.setFloat("color", 1.0f, 0.5f, 0.2f);
 
         // Set the view and projection matrices
-        glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -5.0f));
+        // View - Move camera backward only
+        glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.3f, -1.0f));
+        // Look at the origin
+        view = glm::lookAt(glm::vec3(0.0f, 1.0f, -1.0f), // Camera position
+                           glm::vec3(0.0f, 0.0f, 0.0f), // Look at the origin
+                           glm::vec3(0.0f, 1.0f, 0.0f)); // Up vector
+
+        // Projection - unchanged
         glm::mat4 projection = glm::perspective(glm::radians(45.0f), 640.0f / 480.0f, 0.1f, 100.0f);
+
+        // Model - rotate around Y axis over time
+        glm::mat4 modelMatrix = glm::mat4(1.0f);
+        modelMatrix = glm::rotate(modelMatrix, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));
+
         shader.setMat4("view", view);
         shader.setMat4("projection", projection);
-        shader.setMat4("model", glm::mat4(1.0f));
-        
+        shader.setMat4("model", modelMatrix);
+
         /* glm::vec3 lightPos(1.0f, 1.0f, 1.0f);
         shader.setVec3("lightPos", lightPos); */
 
