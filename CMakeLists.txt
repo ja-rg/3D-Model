@@ -17,6 +17,8 @@ set(SOURCES
     src/renderer.hpp
     src/model.cpp
     src/model.hpp
+    src/shader.cpp
+    src/shader.hpp
 )
 
 # Include directories

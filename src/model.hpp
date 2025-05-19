@@ -4,6 +4,7 @@
 #include <vector>
 #include <glad/glad.h>
 #include <tiny_gltf.h>
+#include "shader.hpp"
 
 class Model {
 public:
@@ -11,7 +12,7 @@ public:
     ~Model();
 
     bool loadFromFile(const std::string& path);
-    void draw() const;
+    void draw(const Shader& shader) const;
     void cleanup();
 
 private:

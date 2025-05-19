@@ -1,4 +1,5 @@
 #include "model.hpp"
+#include "shader.hpp"
 #include <iostream>
 #include <filesystem>
 
@@ -70,7 +71,8 @@ bool Model::loadMesh(const tinygltf::Model& model) {
     return true;
 }
 
-void Model::draw() const {
+void Model::draw(const Shader& shader) const {
+    shader.use();
     for (const auto& mesh : meshes) {
         glBindVertexArray(mesh.vao);
         glDrawElements(GL_TRIANGLES, mesh.indexCount, GL_UNSIGNED_SHORT, 0);
