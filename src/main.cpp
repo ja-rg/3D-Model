@@ -50,9 +50,7 @@ int main()
 
         // Set the view and projection matrices
         // View - Move camera backward only
-        glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.3f, -1.0f));
-        // Look at the origin
-        view = glm::lookAt(glm::vec3(0.0f, 1.0f, -1.0f), // Camera position
+        glm::mat4 view = glm::lookAt(glm::vec3(0.0f, 0.2f, -1.0f), // Camera position
                            glm::vec3(0.0f, 0.0f, 0.0f), // Look at the origin
                            glm::vec3(0.0f, 1.0f, 0.0f)); // Up vector
 
@@ -67,8 +65,8 @@ int main()
         shader.setMat4("projection", projection);
         shader.setMat4("model", modelMatrix);
 
-        /* glm::vec3 lightPos(1.0f, 1.0f, 1.0f);
-        shader.setVec3("lightPos", lightPos); */
+        glm::vec3 lightPos(1.0f, 1.0f, 1.0f);
+        shader.setVec3("lightPos", lightPos);
 
         model.draw(shader);
 
