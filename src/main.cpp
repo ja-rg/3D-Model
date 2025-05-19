@@ -32,12 +32,13 @@ int main()
         return -1;
     }
 
-    Renderer renderer;
-    if (!renderer.initialize())
+    Model model;
+    if (!model.loadFromFile("models/BarramundiFish.glb"))
     {
-        std::cerr << "Renderer initialization failed\n";
         return -1;
     }
+
+    Shader shader("shaders/vertex_shader.glsl", "shaders/fragment_shader.glsl");
 
 
     while (!glfwWindowShouldClose(window))
@@ -45,12 +46,15 @@ int main()
         // Clear the screen
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        renderer.render();
+        model.draw(shader);
+        
         // Draw the model
+        glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
-    renderer.cleanup();
+    model.cleanup();
+
     glfwDestroyWindow(window);
     glfwTerminate();
     return 0;

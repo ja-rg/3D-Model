@@ -1,3 +1,7 @@
 external/
 build/
 .vscode/
+
+# Except build/bin/models and build/bin/shaders
+!build/bin/models/
+!build/bin/shaders/
