@@ -1,5 +1,6 @@
 #include "model.hpp"
 #include <iostream>
+#include <filesystem>
 
 Model::Model() {}
 Model::~Model() { cleanup(); }
@@ -9,7 +10,7 @@ bool Model::loadFromFile(const std::string& path) {
     tinygltf::TinyGLTF loader;
     std::string err, warn;
 
-    bool ret = loader.LoadASCIIFromFile(&gltfModel, &err, &warn, path);
+    bool ret = loader.LoadBinaryFromFile(&gltfModel, &err, &warn, path);
 
     if (!warn.empty()) std::cout << "GLTF Warning: " << warn << std::endl;
     if (!err.empty()) std::cerr << "GLTF Error: " << err << std::endl;

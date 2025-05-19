@@ -37,7 +37,7 @@ int main()
     }
 
     Model model;
-    if (!model.loadFromFile("path/to/model.gltf"))
+    if (!model.loadFromFile("models/BarramundiFish.glb"))
     {
         return -1;
     }
