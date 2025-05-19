@@ -20,7 +20,10 @@ private:
         GLuint vao = 0;
         GLuint vbo = 0;
         GLuint ebo = 0;
+        GLuint textureID = 0;
         size_t indexCount = 0;
+
+        bool hasTexture = false;
     };
 
     std::vector<Mesh> meshes;
