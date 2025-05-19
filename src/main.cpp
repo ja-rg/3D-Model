@@ -29,13 +29,6 @@ int main()
         return -1;
     }
 
-    Renderer renderer;
-    if (!renderer.initialize())
-    {
-        std::cerr << "Renderer initialization failed\n";
-        return -1;
-    }
-
     Model model;
     if (!model.loadFromFile("models/BarramundiFish.glb"))
     {
@@ -52,7 +45,6 @@ int main()
 
     model.cleanup();
 
-    renderer.cleanup();
     glfwDestroyWindow(window);
     glfwTerminate();
     return 0;
