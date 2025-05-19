@@ -8,6 +8,12 @@
 #include "renderer.hpp"
 #include "model.hpp"
 
+#ifndef PRODUCTION
+#define BASE_ROOT "../../"
+#else
+#define BASE_ROOT "./"
+#endif
+
 int main()
 {
     if (!glfwInit())
@@ -33,12 +39,12 @@ int main()
     }
 
     Model model;
-    if (!model.loadFromFile("models/BarramundiFish.glb"))
+    if (!model.loadFromFile(BASE_ROOT "models/BarramundiFish.glb"))
     {
         return -1;
     }
 
-    Shader shader("shaders/vertex_shader.glsl", "shaders/fragment_shader.glsl");
+    Shader shader(BASE_ROOT "src/shaders/vertex_shader.glsl", BASE_ROOT "src/shaders/fragment_shader.glsl");
 
     while (!glfwWindowShouldClose(window))
     {
@@ -51,8 +57,8 @@ int main()
         // Set the view and projection matrices
         // View - Move camera backward only
         glm::mat4 view = glm::lookAt(glm::vec3(0.0f, 0.2f, -1.0f), // Camera position
-                           glm::vec3(0.0f, 0.0f, 0.0f), // Look at the origin
-                           glm::vec3(0.0f, 1.0f, 0.0f)); // Up vector
+                                     glm::vec3(0.0f, 0.0f, 0.0f),  // Look at the origin
+                                     glm::vec3(0.0f, 1.0f, 0.0f)); // Up vector
 
         // Projection - unchanged
         glm::mat4 projection = glm::perspective(glm::radians(45.0f), 640.0f / 480.0f, 0.1f, 100.0f);
